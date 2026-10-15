@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Shapes World | Brainy Bugs Math</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Trebuchet MS', Arial, sans-serif;
+            background: #fff6fb;
+            color: #454563;
+            line-height: 1.8;
+        }
+
+        /* Navigation */
+        nav {
+            background: #ffffff;
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 3px 15px #f4ddec;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .logo {
+            color: #e879b5;
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        nav a {
+            color: #638fc7;
+            text-decoration: none;
+            margin-left: 18px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #e879b5;
+        }
+
+        /* Hero section */
+        .hero {
+            background: linear-gradient(135deg, #ffd9ed, #d9efff);
+            text-align: center;
+            padding: 65px 20px;
+            border-radius: 0 0 45px 45px;
+        }
+
+        .hero h1 {
+            font-size: clamp(32px, 5vw, 48px);
+            color: #ca619d;
+            line-height: 1.3;
+        }
+
+        .hero p {
+            max-width: 600px;
+            margin: 15px auto;
+            color: #526f96;
+            font-size: 17px;
+        }
+
+        .hero-shapes {
+            font-size: 38px;
+            margin: 15px 0;
+            letter-spacing: 10px;
+        }
+
+        .hero-button {
+            display: inline-block;
+            background: #e879b5;
+            color: white;
+            padding: 11px 25px;
+            margin-top: 12px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .hero-button:hover {
+            background: #638fc7;
+            transform: translateY(-3px);
+        }
+
+        /* Main content */
+        .container {
+            max-width: 1050px;
+            width: 90%;
+            margin: 40px auto;
+        }
+
+        .section-title {
+            text-align: center;
+            color: #ca619d;
+            font-size: 29px;
+            margin: 35px 0 20px;
+        }
+
+        .intro {
+            background: white;
+            border-left: 6px solid #8ec9f4;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 18px #e8e5f2;
+            margin-bottom: 30px;
+        }
+
+        .intro h2 {
+            color: #638fc7;
+            margin-bottom: 10px;
+        }
+
+        /* Shape cards */
+        .shape-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 22px;
+        }
+
+        .shape-card {
+            background: white;
+            padding: 25px 20px;
+            text-align: center;
+            border-radius: 22px;
+            border: 2px solid #f8d9eb;
+            box-shadow: 0 6px 18px #eee4ef;
+            transition: 0.3s;
+        }
+
+        .shape-card:nth-child(even) {
+            border-color: #d4eaff;
+        }
+
+        .shape-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 22px #e8d6e9;
+        }
+
+        .shape-picture {
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 65px;
+            margin-bottom: 10px;
+        }
+
+        .shape-card h3 {
+            color: #d66ca7;
+            margin-bottom: 8px;
+        }
+
+        .shape-card:nth-child(even) h3 {
+            color: #638fc7;
+        }
+
+        .shape-card p {
+            font-size: 14px;
+        }
+
+        /* Special note boxes */
+        .note-box {
+            padding: 25px;
+            border-radius: 18px;
+            margin: 25px 0;
+        }
+
+        .pink-note {
+            background: #ffe6f3;
+            border: 2px dashed #e99ac7;
+        }
+
+        .blue-note {
+            background: #e3f3ff;
+            border: 2px dashed #8ec9f4;
+        }
+
+        .note-box h3 {
+            margin-bottom: 10px;
+            color: #ca619d;
+        }
+
+        .blue-note h3 {
+            color: #4c83bb;
+        }
+
+        /* Comparison table */
+        .table-wrap {
+            overflow-x: auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 18px #eee4ef;
+            margin: 20px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 450px;
+        }
+
+        th {
+            background: #b8ddfb;
+            color: #395c87;
+            padding: 14px;
+        }
+
+        td {
+            padding: 13px;
+            text-align: center;
+            border-bottom: 1px solid #f3ddeb;
+        }
+
+        tr:nth-child(even) {
+            background: #fff1f8;
+        }
+
+        /* Formula cards */
+        .formula-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .formula {
+            padding: 20px;
+            text-align: center;
+            background: #e5f4ff;
+            border-radius: 16px;
+        }
+
+        .formula:nth-child(even) {
+            background: #ffe8f4;
+        }
+
+        .formula h3 {
+            color: #638fc7;
+        }
+
+        .formula p {
+            font-size: 15px;
+        }
+
+        /* Quiz */
+        .quiz {
+            background: white;
+            border-radius: 22px;
+            padding: 30px;
+            margin-top: 35px;
+            text-align: center;
+            box-shadow: 0 6px 20px #e9ddea;
+        }
+
+        .quiz h2 {
+            color: #ca619d;
+            margin-bottom: 15px;
+        }
+
+        .quiz-question {
+            margin: 20px 0;
+            padding: 18px;
+            background: #f4faff;
+            border-radius: 15px;
+        }
+
+        .quiz-question p {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .quiz button {
+            background: #8ec9f4;
+            color: #344d70;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 12px;
+            margin: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .quiz button:hover {
+            background: #f5b9dc;
+        }
+
+        .quiz button:focus-visible,
+        a:focus-visible {
+            outline: 3px solid #ca619d;
+            outline-offset: 3px;
+        }
+
+        #quiz-result {
+            color: #638fc7;
+            font-weight: bold;
+            margin-top: 18px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            background: #dcefff;
+            color: #526f96;
+            padding: 25px 15px;
+            margin-top: 50px;
+        }
+
+        .back-button {
+            display: block;
+            width: fit-content;
+            margin: 35px auto;
+            background: #e879b5;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .back-button:hover {
+            background: #638fc7;
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 600px) {
+            nav {
+                justify-content: center;
+                text-align: center;
+            }
+
+            nav a {
+                margin: 0 7px;
+            }
+
+            .hero {
+                padding: 45px 18px;
+            }
+
+            .container {
+                width: 92%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">🐞 Brainy Bugs Math</div>
+
+        <div>
+            <a href="index.html">Home</a>
+            <a href="#notes">Notes</a>
+            <a href="#quiz">Quiz</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-shapes">🩷 🔵 🔺 🟪</div>
+
+        <h1>Welcome to Shapes World!</h1>
+
+        <p>
+            Explore the wonderful world of shapes! Learn their names,
+            properties, formulas, and how we find them in everyday life.
+        </p>
+
+        <a href="#notes" class="hero-button">Start Learning ✨</a>
+    </section>
+
+    <main class="container" id="notes">
+
+        <section class="intro">
+            <h2>🌸 What Is a Shape?</h2>
+
+            <p>
+                A shape is the form or outline of an object.
+                We see shapes everywhere: in our homes, schools,
+                toys, buildings, and nature. Learning about shapes
+                helps us understand the world around us.
+            </p>
+        </section>
+
+        <h2 class="section-title">🎀 Part 1: 2D Shapes</h2>
+
+        <div class="note-box pink-note">
+            <h3>What are 2D shapes?</h3>
+            <p>
+                2D means two-dimensional. These shapes have length
+                and width, but no thickness. They are flat shapes
+                that we can draw on paper.
+            </p>
+        </div>
+
+        <div class="shape-grid">
+
+            <article class="shape-card">
+                <div class="shape-picture">🔴</div>
+                <h3>1. Circle</h3>
+                <p>A circle is round and has no straight sides or corners.</p>
+                <p><strong>Example:</strong> A coin or a clock.</p>
+                <p><strong>Remember:</strong> 0 corners.</p>
+            </article>
+
+            <article class="shape-card">
+                <div class="shape-picture">🟦</div>
+                <h3>2. Square</h3>
+                <p>A square has four equal sides and four right-angle corners.</p>
+                <p><strong>Example:</strong> A square tile.</p>
+                <p><strong>Remember:</strong> 4 equal sides.</p>
+            </article>
+
+            <article class="shape-card">
+                <div class="shape-picture">▰</div>
+                <h3>3. Rectangle</h3>
+                <p>A rectangle has four sides and four right angles. Opposite sides are equal.</p>
+                <p><strong>Example:</strong> A book or a door.</p>
+                <p><strong>Remember:</strong> 2 pairs of equal sides.</p>
+            </article>
+
+            <article class="shape-card">
+                <div class="shape-picture">🔺</div>
+                <h3>4. Triangle</h3>
+                <p>A triangle has three straight sides and three corners.</p>
+                <p><strong>Example:</strong> A triangular road sign.</p>
+                <p><strong>Remember:</strong> 3 sides.</p>
+            </article>
+
+            <article class="shape-card">
+                <div class="shape-picture">💎</div>
+                <h3>5. Rhombus</h3>
+                <p>A rhombus has four equal sides. Opposite angles are equal.</p>
+                <p><strong>Example:</strong> A diamond-shaped pattern.</p>
+                <p><strong>Remember:</strong> 4 equal sides.</p>
+            </article>
+
+            <article class="shape-card">
+                <div class="shape-picture">⬡</div>
+                <h3>6. Hexagon</h3>
+                <p>A hexagon is a polygon with six straight sides and six corners.</p>
+                <p><strong>Example:</strong> A honeycomb cell.</p>
+                <p><strong>Remember:</strong> 6 sides.</p>
+            </article>
+
+            <article class="shape-card">
+                <div class="shape-picture">⬠</div>
+                <h3>7. Pentagon</h3>
+                <p>A pentagon is a polygon with five sides and five corners.</p>
+                <p><strong>Example:</strong> The outline of a typical five-sided shape.</p>
+                <p><strong>Remember:</strong> 5 sides.</p>
+            </article>
+
+            <article class="shape-card">
+                <div class="shape-picture">🥚</div>
+                <h3>8. Oval</h3>
+                <p>An oval is a curved, rounded shape that looks like a stretched circle.</p>
+                <p><strong>Example:</strong> An egg outline.</p>
+                <p><strong>Remember:</strong> No straight sides.</p>
+            </article>
+
+        </div>
+
+        <div class="note-box blue-note">
+            <h3>💡 What Is a Polygon?</h3>
+            <p>
+                A polygon is a closed, flat shape made from straight
+                line segments. Triangles, squares, pentagons, and
+                hexagons are all polygons. A circle is not a polygon
+                because it has no straight sides.
+            </p>
+        </div>
+
+        <h2 class="section-title">🩵 Part 2: 3D Shapes</h2>
+
+        <div class="note-box blue-note">
+            <h3>What are 3D shapes?</h3>
+            <p>
+                3D means three-dimensional. These shapes have length,
+                width, and height, so they take up space. Many real
+                objects around us are 3D shapes.
+            </p>
+        </div>
+
+        <div class="shape-grid">
+
+            <article class="shape-card">
+                <div class="shape-picture">⚽</div>
+                <h3>1. Sphere</h3>
+                <p>A sphere is completely round, like a ball.</p>
+                <p><strong>Example:</strong> A football or a marble.</p>
+                <p><strong>Remember:</strong> It has one curved surface.</p>
+            </article>
+
+            <article class="shape-card">
+                <div class="shape-picture">🎲</div>
+                <h3>2. Cube</h3>
+                <p>A cube has six equal square faces, twelve edges, and eight vertices.</p>
+                <p><strong>Example:</strong> A dice.</p>
+                <p><strong>Remember:</strong> All edges are equal.</p>
+            </article>
+
+            <article class="shape-card">
+                <div class="shape-picture">🥫</div>
+                <h3>3. Cylinder</h3>
+                <p>A cylinder has two flat circular faces and one curved surface.</p>
+                <p><strong>Example:</strong> A tin can.</p>
+                <p><strong>Remember:</strong> Two circular ends.</p>
+            </article>
+
+            <article class="shape-card">
+                <div class="shape-picture">🍦</div>
+                <h3>4. Cone</h3>
+                <p>A cone has one circular base and one pointed top.</p>
+                <p><strong>Example:</strong> An ice-cream cone.</p>
+                <p><strong>Remember:</strong> One vertex at the tip.</p>
+            </article>
+
+            <article class="shape-card">
+                <div class="shape-picture">📦</div>
+                <h3>5. Cuboid</h3>
+                <p>A cuboid has six rectangular faces, twelve edges, and eight vertices.</p>
+                <p><strong>Example:</strong> A shoebox.</p>
+                <p><strong>Remember:</strong> Box-shaped.</p>
+            </article>
+
+            <article class="shape-card">
+                <div class="shape-picture">🔺</div>
+                <h3>6. Pyramid</h3>
+                <p>A pyramid has a base and triangular faces that meet at a point.</p>
+                <p><strong>Example:</strong> An Egyptian pyramid with a square base.</p>
+                <p><strong>Remember:</strong> Triangular faces meet at the top.</p>
+            </article>
+
+        </div>
+
+        <h2 class="section-title">📚 Part 3: Compare the Shapes</h2>
+
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Shape</th>
+                        <th>Sides or Faces</th>
+                        <th>Corners or Vertices</th>
+                        <th>Everyday Example</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Triangle</td>
+                        <td>3 sides</td>
+                        <td>3</td>
+                        <td>Road sign</td>
+                    </tr>
+
+                    <tr>
+                        <td>Square</td>
+                        <td>4 equal sides</td>
+                        <td>4</td>
+                        <td>Tile</td>
+                    </tr>
+
+                    <tr>
+                        <td>Rectangle</td>
+                        <td>4 sides</td>
+                        <td>4</td>
+                        <td>Book</td>
+                    </tr>
+
+                    <tr>
+                        <td>Pentagon</td>
+                        <td>5 sides</td>
+                        <td>5</td>
+                        <td>Five-sided shape</td>
+                    </tr>
+
+                    <tr>
+                        <td>Hexagon</td>
+                        <td>6 sides</td>
+                        <td>6</td>
+                        <td>Honeycomb cell</td>
+                    </tr>
+
+                    <tr>
+                        <td>Cube</td>
+                        <td>6 faces</td>
+                        <td>8 vertices</td>
+                        <td>Dice</td>
+                    </tr>
+
+                    <tr>
+                        <td>Cuboid</td>
+                        <td>6 faces</td>
+                        <td>8 vertices</td>
+                        <td>Shoebox</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2 class="section-title">✏️ Part 4: Perimeter and Area</h2>
+
+        <div class="note-box pink-note">
+            <h3>What is perimeter?</h3>
+            <p>
+                Perimeter is the total distance around the outside
+                of a 2D shape. To find it, add the lengths of all its sides.
+            </p>
+
+            <h3 style="margin-top: 15px;">What is area?</h3>
+            <p>
+                Area is the amount of flat space inside a 2D shape.
+                Area is measured in square units, such as cm².
+            </p>
+        </div>
+
+        <div class="formula-grid">
+
+            <div class="formula">
+                <h3>Square</h3>
+                <p><strong>Perimeter</strong> = 4 × side</p>
+                <p><strong>Area</strong> = side × side</p>
+            </div>
+
+            <div class="formula">
+                <h3>Rectangle</h3>
+                <p><strong>Perimeter</strong> = 2 × (length + width)</p>
+                <p><strong>Area</strong> = length × width</p>
+            </div>
+
+            <div class="formula">
+                <h3>Triangle</h3>
+                <p><strong>Perimeter</strong> = side 1 + side 2 + side 3</p>
+                <p><strong>Area</strong> = ½ × base × height</p>
+            </div>
+
+        </div>
+
+        <div class="note-box blue-note">
+            <h3>🌷 Example to Remember</h3>
+            <p>
+                A square has a side length of 4 cm.
+            </p>
+            <p>
+                Perimeter = 4 × 4 = <strong>16 cm</strong>
+            </p>
+            <p>
+                Area = 4 × 4 = <strong>16 cm²</strong>
+            </p>
+            <p>
+                Notice that perimeter uses ordinary length units,
+                while area uses square units.
+            </p>
+        </div>
+
+        <h2 class="section-title">🌍 Part 5: Shapes Around Us</h2>
+
+        <div class="shape-grid">
+
+            <article class="shape-card">
+                <div class="shape-picture">🕒</div>
+                <h3>Circle</h3>
+                <p>Look for round clocks, plates, and wheels.</p>
+            </article>
+
+            <article class="shape-card">
+                <div class="shape-picture">📱</div>
+                <h3>Rectangle</h3>
+                <p>Look for phones, books, windows, and doors.</p>
+            </article>
+
+            <article class="shape-card">
+                <div class="shape-picture">🎁</div>
+                <h3>Cube or Cuboid</h3>
+                <p>Look for dice, gift boxes, and packages.</p>
+            </article>
+
+        </div>
+
+        <section class="quiz" id="quiz">
+            <h2>🧠 Shapes Challenge!</h2>
+            <p>Test what you have learned. Choose an answer for each question.</p>
+
+            <div class="quiz-question">
+                <p>1. Which shape has three sides?</p>
+                <button onclick="checkAnswer(1, 'a')">Circle</button>
+                <button onclick="checkAnswer(1, 'b')">Triangle</button>
+                <button onclick="checkAnswer(1, 'c')">Square</button>
+                <p id="answer1"></p>
+            </div>
+
+            <div class="quiz-question">
+                <p>2. Which 3D shape looks like a dice?</p>
+                <button onclick="checkAnswer(2, 'a')">Sphere</button>
+                <button onclick="checkAnswer(2, 'b')">Cone</button>
+                <button onclick="checkAnswer(2, 'c')">Cube</button>
+                <p id="answer2"></p>
+            </div>
+
+            <div class="quiz-question">
+                <p>3. What does area measure?</p>
+                <button onclick="checkAnswer(3, 'a')">Space inside a shape</button>
+                <button onclick="checkAnswer(3, 'b')">Distance around a shape</button>
+                <button onclick="checkAnswer(3, 'c')">Number of corners</button>
+                <p id="answer3"></p>
+            </div>
+
+            <button onclick="showScore()">See My Score ⭐</button>
+            <p id="quiz-result" aria-live="polite"></p>
+        </section>
+
+        <a href="index.html" class="back-button">← Back to Brainy Bugs Math</a>
+
+    </main>
+
+    <footer>
+        <p>🩷 Keep learning, keep growing! 🩵</p>
+        <p>© 2026 Brainy Bugs Math | Learn Math the Fun Way!</p>
+    </footer>
+
+    <script>
+        const answers = {
+            1: "b",
+            2: "c",
+            3: "a"
+        };
+
+        const messages = {
+            1: "A triangle has 3 sides.",
+            2: "A cube has 6 equal square faces.",
+            3: "Area measures the space inside a shape."
+        };
+
+        let score = 0;
+        const answered = {};
+
+        function checkAnswer(question, choice) {
+            const result = document.getElementById("answer" + question);
+
+            if (!answered[question]) {
+                answered[question] = true;
+
+                if (choice === answers[question]) {
+                    score++;
+                }
+            }
+
+            if (choice === answers[question]) {
+                result.textContent = "🎉 Correct! " + messages[question];
+                result.style.color = "#398b69";
+            } else {
+                result.textContent = "💗 Not quite! " + messages[question];
+                result.style.color = "#d66ca7";
+            }
+        }
+
+        function showScore() {
+            const result = document.getElementById("quiz-result");
+            const total = Object.keys(answered).length;
+
+            if (total < 3) {
+                result.textContent =
+                    "Answer all 3 questions first! You have answered " +
+                    total + " out of 3.";
+                return;
+            }
+
+            result.textContent =
+                "You scored " + score + " out of 3! " +
+                (score === 3
+                    ? "Amazing work, shape expert! 🌟"
+                    : "Great effort! Review your notes and try again. 🩷");
+        }
+    </script>
+
+</body>
+</html>

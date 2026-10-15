@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Numbers World | Brainy Bugs Math</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Trebuchet MS', Arial, sans-serif;
+            background: #f8f6ff;
+            color: #454563;
+            line-height: 1.8;
+        }
+
+        nav {
+            background: white;
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            box-shadow: 0 3px 15px #e8e1f5;
+        }
+
+        .logo {
+            font-size: 21px;
+            font-weight: bold;
+            color: #8b78d6;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #658ec4;
+            margin-left: 15px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #df82b5;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 65px 20px;
+            background: linear-gradient(135deg, #e7ddff, #d9f0ff, #ffe3f1);
+            border-radius: 0 0 45px 45px;
+        }
+
+        .hero h1 {
+            color: #8169cb;
+            font-size: clamp(32px, 5vw, 48px);
+            line-height: 1.3;
+        }
+
+        .hero p {
+            max-width: 620px;
+            margin: 15px auto;
+            color: #526b91;
+            font-size: 17px;
+        }
+
+        .number-art {
+            font-size: 38px;
+            letter-spacing: 10px;
+            margin-bottom: 15px;
+        }
+
+        .hero-button {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 11px 25px;
+            background: #8b78d6;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .hero-button:hover {
+            background: #df82b5;
+            transform: translateY(-3px);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1050px;
+            margin: 40px auto;
+        }
+
+        .section-title {
+            text-align: center;
+            color: #8b78d6;
+            font-size: 29px;
+            margin: 40px 0 22px;
+        }
+
+        .intro {
+            background: white;
+            padding: 25px;
+            border-left: 6px solid #b7a6f5;
+            border-radius: 15px;
+            box-shadow: 0 5px 18px #e8e3f2;
+            margin-bottom: 25px;
+        }
+
+        .intro h2 {
+            color: #8b78d6;
+            margin-bottom: 10px;
+        }
+
+        .note-box {
+            padding: 24px;
+            margin: 25px 0;
+            border-radius: 18px;
+        }
+
+        .purple-note {
+            background: #eee8ff;
+            border: 2px dashed #b7a6f5;
+        }
+
+        .pink-note {
+            background: #ffe8f3;
+            border: 2px dashed #efa6cf;
+        }
+
+        .blue-note {
+            background: #e2f3ff;
+            border: 2px dashed #9ccff2;
+        }
+
+        .note-box h3 {
+            color: #8169cb;
+            margin-bottom: 8px;
+        }
+
+        .pink-note h3 {
+            color: #c966a0;
+        }
+
+        .blue-note h3 {
+            color: #4c83bb;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 22px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px 20px;
+            border-radius: 22px;
+            text-align: center;
+            border: 2px solid #e7ddff;
+            box-shadow: 0 5px 18px #e9e3f2;
+            transition: 0.3s;
+        }
+
+        .card:nth-child(even) {
+            border-color: #d5edff;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-icon {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        .card h3 {
+            color: #8b78d6;
+            margin-bottom: 8px;
+        }
+
+        .card:nth-child(even) h3 {
+            color: #5c91c7;
+        }
+
+        .number-line {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 9px;
+            margin: 20px 0;
+        }
+
+        .number-line span {
+            width: 45px;
+            height: 45px;
+            display: grid;
+            place-items: center;
+            background: #e9e2ff;
+            color: #725db9;
+            border-radius: 12px;
+            font-weight: bold;
+        }
+
+        .number-line span:nth-child(even) {
+            background: #dff2ff;
+            color: #4679af;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 18px #e8e3f2;
+            margin: 20px 0;
+        }
+
+        table {
+            width: 100%;
+            min-width: 430px;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: #e4dcff;
+            color: #6653a9;
+            padding: 14px;
+        }
+
+        td {
+            padding: 13px;
+            text-align: center;
+            border-bottom: 1px solid #eee5f5;
+        }
+
+        tr:nth-child(even) {
+            background: #f5faff;
+        }
+
+        .quiz {
+            background: white;
+            border-radius: 22px;
+            padding: 28px;
+            margin-top: 35px;
+            box-shadow: 0 6px 20px #e8e0f1;
+            text-align: center;
+        }
+
+        .quiz h2 {
+            color: #8b78d6;
+            margin-bottom: 12px;
+        }
+
+        .question {
+            background: #f7f4ff;
+            padding: 18px;
+            border-radius: 15px;
+            margin: 18px 0;
+        }
+
+        .question p {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background: #d9efff;
+            color: #425f86;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 11px;
+            margin: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            background: #f8d8eb;
+        }
+
+        button:focus-visible,
+        a:focus-visible {
+            outline: 3px solid #8b78d6;
+            outline-offset: 3px;
+        }
+
+        #quiz-result {
+            margin-top: 15px;
+            color: #8169cb;
+            font-weight: bold;
+        }
+
+        .back-button {
+            display: block;
+            width: fit-content;
+            margin: 35px auto;
+            padding: 12px 24px;
+            background: #8b78d6;
+            color: white;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .back-button:hover {
+            background: #df82b5;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px 15px;
+            margin-top: 45px;
+            background: #e7e2ff;
+            color: #665b94;
+        }
+
+        @media (max-width: 600px) {
+            nav {
+                justify-content: center;
+            }
+
+            nav a {
+                margin: 0 7px;
+            }
+
+            .hero {
+                padding: 45px 18px;
+            }
+
+            .container {
+                width: 92%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">🐞 Brainy Bugs Math</div>
+
+        <div>
+            <a href="index.html">Home</a>
+            <a href="#notes">Notes</a>
+            <a href="#quiz">Quiz</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="number-art">🌸 1️⃣ 2️⃣ 3️⃣ 🌸</div>
+
+        <h1>Welcome to Numbers World!</h1>
+
+        <p>
+            Numbers help us count, compare, measure, and solve problems.
+            Let's discover how they work through fun and easy lessons!
+        </p>
+
+        <a href="#notes" class="hero-button">Start Learning ✨</a>
+    </section>
+
+    <main class="container" id="notes">
+
+        <section class="intro">
+            <h2>💜 What Are Numbers?</h2>
+            <p>
+                Numbers are symbols we use to represent quantities,
+                amounts, and values. We use numbers when counting toys,
+                measuring height, telling time, and buying things.
+            </p>
+        </section>
+
+        <h2 class="section-title">🌷 Part 1: Counting Numbers</h2>
+
+        <div class="note-box purple-note">
+            <h3>Learn to Count</h3>
+            <p>
+                Counting helps us find out how many objects there are.
+                We usually begin with 1, 2, 3, 4, 5, and continue in order.
+                Zero (0) means there are no objects in a group.
+            </p>
+
+            <div class="number-line">
+                <span>0</span><span>1</span><span>2</span>
+                <span>3</span><span>4</span><span>5</span>
+                <span>6</span><span>7</span><span>8</span>
+                <span>9</span><span>10</span>
+            </div>
+
+            <p><strong>Example:</strong> 🍎 🍎 🍎 = 3 apples.</p>
+        </div>
+
+        <div class="card-grid">
+
+            <article class="card">
+                <div class="card-icon">🔢</div>
+                <h3>Natural Numbers</h3>
+                <p>
+                    Natural numbers are used for counting:
+                    1, 2, 3, 4, 5, and so on.
+                </p>
+            </article>
+
+            <article class="card">
+                <div class="card-icon">0️⃣</div>
+                <h3>Zero</h3>
+                <p>
+                    Zero represents no quantity. If you have
+                    three cookies and eat all three, you have zero left.
+                </p>
+            </article>
+
+            <article class="card">
+                <div class="card-icon">🔟</div>
+                <h3>Whole Numbers</h3>
+                <p>
+                    Whole numbers include zero and all positive
+                    counting numbers: 0, 1, 2, 3, 4, and so on.
+                </p>
+            </article>
+
+        </div>
+
+        <h2 class="section-title">🩵 Part 2: Place Value</h2>
+
+        <div class="note-box blue-note">
+            <h3>What Is Place Value?</h3>
+            <p>
+                Place value tells us what a digit is worth based
+                on its position in a number. Moving left, each place
+                is worth ten times the place to its right.
+            </p>
+        </div>
+
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Number</th>
+                        <th>Hundreds</th>
+                        <th>Tens</th>
+                        <th>Ones</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>352</td>
+                        <td>3 = 300</td>
+                        <td>5 = 50</td>
+                        <td>2 = 2</td>
+                    </tr>
+
+                    <tr>
+                        <td>417</td>
+                        <td>4 = 400</td>
+                        <td>1 = 10</td>
+                        <td>7 = 7</td>
+                    </tr>
+
+                    <tr>
+                        <td>806</td>
+                        <td>8 = 800</td>
+                        <td>0 = 0</td>
+                        <td>6 = 6</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="note-box pink-note">
+            <h3>✨ Example: Number 352</h3>
+            <p>
+                3 hundreds = 300
+            </p>
+            <p>
+                5 tens = 50
+            </p>
+            <p>
+                2 ones = 2
+            </p>
+            <p><strong>Expanded form:</strong> 352 = 300 + 50 + 2</p>
+        </div>
+
+        <h2 class="section-title">🎀 Part 3: Odd and Even Numbers</h2>
+
+        <div class="card-grid">
+
+            <article class="card">
+                <div class="card-icon">2️⃣ 4️⃣ 6️⃣</div>
+                <h3>Even Numbers</h3>
+                <p>
+                    Even numbers can be divided by 2 without
+                    leaving a remainder.
+                </p>
+                <p><strong>Examples:</strong> 2, 4, 6, 8, 10, 12.</p>
+            </article>
+
+            <article class="card">
+                <div class="card-icon">1️⃣ 3️⃣ 5️⃣</div>
+                <h3>Odd Numbers</h3>
+                <p>
+                    Odd numbers leave a remainder of 1 when
+                    divided by 2.
+                </p>
+                <p><strong>Examples:</strong> 1, 3, 5, 7, 9, 11.</p>
+            </article>
+
+        </div>
+
+        <div class="note-box purple-note">
+            <h3>💡 Easy Trick</h3>
+            <p>
+                Look at the last digit. Numbers ending in
+                0, 2, 4, 6, or 8 are even.
+            </p>
+            <p>
+                Numbers ending in 1, 3, 5, 7, or 9 are odd.
+            </p>
+            <p><strong>Example:</strong> 248 is even, but 357 is odd.</p>
+        </div>
+
+        <h2 class="section-title">🌈 Part 4: Comparing Numbers</h2>
+
+        <div class="card-grid">
+
+            <article class="card">
+                <div class="card-icon">💗</div>
+                <h3>Greater Than ( &gt; )</h3>
+                <p>Means one number is larger than another.</p>
+                <p><strong>Example:</strong> 8 &gt; 3</p>
+            </article>
+
+            <article class="card">
+                <div class="card-icon">💙</div>
+                <h3>Less Than ( &lt; )</h3>
+                <p>Means one number is smaller than another.</p>
+                <p><strong>Example:</strong> 2 &lt; 7</p>
+            </article>
+
+            <article class="card">
+                <div class="card-icon">💜</div>
+                <h3>Equal To ( = )</h3>
+                <p>Means two values are the same.</p>
+                <p><strong>Example:</strong> 5 = 5</p>
+            </article>
+
+        </div>
+
+        <div class="note-box blue-note">
+            <h3>Remember!</h3>
+            <p>
+                When comparing two whole numbers, the number with
+                more digits is larger. If they have the same number
+                of digits, compare the digits from left to right.
+            </p>
+            <p><strong>Example:</strong> 425 &gt; 398 because 4 hundreds is more than 3 hundreds.</p>
+        </div>
+
+        <h2 class="section-title">🧮 Part 5: Basic Operations</h2>
+
+        <div class="card-grid">
+
+            <article class="card">
+                <div class="card-icon">➕</div>
+                <h3>Addition</h3>
+                <p>Addition combines quantities to find a total.</p>
+                <p><strong>Example:</strong> 3 + 2 = 5</p>
+            </article>
+
+            <article class="card">
+                <div class="card-icon">➖</div>
+                <h3>Subtraction</h3>
+                <p>Subtraction takes one quantity away from another.</p>
+                <p><strong>Example:</strong> 7 − 4 = 3</p>
+            </article>
+
+            <article class="card">
+                <div class="card-icon">✖️</div>
+                <h3>Multiplication</h3>
+                <p>Multiplication is repeated addition of equal groups.</p>
+                <p><strong>Example:</strong> 3 × 4 = 12</p>
+            </article>
+
+            <article class="card">
+                <div class="card-icon">➗</div>
+                <h3>Division</h3>
+                <p>Division shares a quantity into equal groups.</p>
+                <p><strong>Example:</strong> 12 ÷ 3 = 4</p>
+            </article>
+
+        </div>
+
+        <h2 class="section-title">📖 Part 6: Practice Examples</h2>
+
+        <div class="note-box pink-note">
+            <h3>Example 1: Addition</h3>
+            <p>You have 4 pencils and get 3 more.</p>
+            <p>4 + 3 = <strong>7 pencils</strong></p>
+
+            <h3 style="margin-top: 18px;">Example 2: Subtraction</h3>
+            <p>You have 9 candies and give away 2.</p>
+            <p>9 − 2 = <strong>7 candies left</strong></p>
+
+            <h3 style="margin-top: 18px;">Example 3: Multiplication</h3>
+            <p>There are 3 bags with 2 apples in each bag.</p>
+            <p>3 × 2 = <strong>6 apples</strong></p>
+
+            <h3 style="margin-top: 18px;">Example 4: Division</h3>
+            <p>Share 8 cookies equally among 4 children.</p>
+            <p>8 ÷ 4 = <strong>2 cookies each</strong></p>
+        </div>
+
+        <section class="quiz" id="quiz">
+            <h2>🧠 Numbers Challenge!</h2>
+            <p>Answer all three questions and check your score.</p>
+
+            <div class="question">
+                <p>1. Which number is even?</p>
+                <button onclick="checkAnswer(1, 'a')">7</button>
+                <button onclick="checkAnswer(1, 'b')">12</button>
+                <button onclick="checkAnswer(1, 'c')">15</button>
+                <p id="answer1" aria-live="polite"></p>
+            </div>
+
+            <div class="question">
+                <p>2. What is the value of 4 in 246?</p>
+                <button onclick="checkAnswer(2, 'a')">4</button>
+                <button onclick="checkAnswer(2, 'b')">40</button>
+                <button onclick="checkAnswer(2, 'c')">400</button>
+                <p id="answer2" aria-live="polite"></p>
+            </div>
+
+            <div class="question">
+                <p>3. What is 6 × 3?</p>
+                <button onclick="checkAnswer(3, 'a')">9</button>
+                <button onclick="checkAnswer(3, 'b')">18</button>
+                <button onclick="checkAnswer(3, 'c')">12</button>
+                <p id="answer3" aria-live="polite"></p>
+            </div>
+
+            <button onclick="showScore()">See My Score ⭐</button>
+            <p id="quiz-result" aria-live="polite"></p>
+        </section>
+
+        <a href="index.html" class="back-button">
+            ← Back to Brainy Bugs Math
+        </a>
+
+    </main>
+
+    <footer>
+        <p>💜 Keep counting, keep learning! 🩵</p>
+        <p>© 2026 Brainy Bugs Math | Learn Math the Fun Way!</p>
+    </footer>
+
+    <script>
+        const correctAnswers = {
+            1: "b",
+            2: "b",
+            3: "b"
+        };
+
+        const explanations = {
+            1: "12 is even because it divides by 2 without a remainder.",
+            2: "The 4 is in the tens place, so its value is 40.",
+            3: "6 groups of 3 equal 18."
+        };
+
+        let score = 0;
+        const answered = {};
+
+        function checkAnswer(question, choice) {
+            const result = document.getElementById("answer" + question);
+
+            if (!answered[question]) {
+                answered[question] = true;
+
+                if (choice === correctAnswers[question]) {
+                    score++;
+                }
+            }
+
+            if (choice === correctAnswers[question]) {
+                result.textContent = "🎉 Correct! " + explanations[question];
+                result.style.color = "#398b69";
+            } else {
+                result.textContent = "🩷 Not quite! " + explanations[question];
+                result.style.color = "#c966a0";
+            }
+        }
+
+        function showScore() {
+            const result = document.getElementById("quiz-result");
+            const total = Object.keys(answered).length;
+
+            if (total < 3) {
+                result.textContent =
+                    "Answer all 3 questions first! You have answered " +
+                    total + " out of 3.";
+                return;
+            }
+
+            result.textContent =
+                "You scored " + score + " out of 3! " +
+                (score === 3
+                    ? "Amazing! You're a Numbers Star! 🌟"
+                    : "Good effort! Review the notes and try again. 💜");
+        }
+    </script>
+
+</body>
+</html>

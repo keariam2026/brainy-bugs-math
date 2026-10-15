@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brain Games | Brainy Bugs Math</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Trebuchet MS", Arial, sans-serif;
+            background: linear-gradient(135deg, #edfff5, #fff0f7, #eaf7ff);
+            color: #36534d;
+            line-height: 1.7;
+        }
+
+        header {
+            background: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            box-shadow: 0 3px 15px #a7d9c455;
+        }
+
+        header h2 {
+            color: #399b7b;
+        }
+
+        nav a {
+            color: #55776c;
+            text-decoration: none;
+            font-weight: bold;
+            margin-left: 15px;
+        }
+
+        nav a:hover {
+            color: #e779ad;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 65px 20px;
+        }
+
+        .hero .emoji {
+            font-size: 55px;
+        }
+
+        .hero h1 {
+            color: #399b7b;
+            font-size: clamp(30px, 5vw, 45px);
+            margin: 10px 0;
+        }
+
+        .hero p {
+            max-width: 650px;
+            margin: auto;
+            font-size: 17px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #d6f7e7;
+            color: #26775d;
+            border-radius: 25px;
+            padding: 7px 18px;
+            margin-top: 18px;
+            font-weight: bold;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: auto;
+            padding: 0 20px 50px;
+        }
+
+        section {
+            background: #ffffffdf;
+            padding: 28px;
+            margin-bottom: 25px;
+            border-radius: 22px;
+            box-shadow: 0 5px 18px #9bcbb522;
+        }
+
+        h2 {
+            color: #399b7b;
+            margin-bottom: 12px;
+        }
+
+        h3 {
+            color: #d66d9c;
+            margin-bottom: 8px;
+        }
+
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+            margin-top: 20px;
+        }
+
+        .game-card {
+            background: #e8fff3;
+            border: 2px solid #c8f1df;
+            padding: 22px;
+            border-radius: 18px;
+        }
+
+        .game-card:nth-child(2) {
+            background: #fff0f7;
+            border-color: #ffd5e8;
+        }
+
+        .game-card:nth-child(3) {
+            background: #eaf7ff;
+            border-color: #cceaff;
+        }
+
+        .game-icon {
+            font-size: 35px;
+            margin-bottom: 5px;
+        }
+
+        .game-area {
+            background: #f1fff8;
+            padding: 20px;
+            border-radius: 16px;
+            margin-top: 15px;
+            border: 1px solid #c8f1df;
+        }
+
+        .big-display {
+            font-size: 30px;
+            font-weight: bold;
+            text-align: center;
+            color: #399b7b;
+            margin: 12px 0;
+            overflow-wrap: anywhere;
+        }
+
+        button {
+            background: #45ae8b;
+            color: white;
+            border: none;
+            padding: 11px 18px;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 5px 4px 5px 0;
+            transition: 0.25s;
+        }
+
+        button:hover {
+            background: #2c886b;
+            transform: translateY(-2px);
+        }
+
+        input[type="number"],
+        input[type="text"] {
+            width: 100%;
+            max-width: 280px;
+            padding: 11px;
+            border: 2px solid #bce8d5;
+            border-radius: 10px;
+            font-size: 16px;
+            margin: 8px 0;
+        }
+
+        .feedback {
+            font-weight: bold;
+            margin-top: 10px;
+            min-height: 28px;
+        }
+
+        .memory-colors {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(80px, 120px));
+            justify-content: center;
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .color-tile {
+            height: 90px;
+            border-radius: 18px;
+            border: 3px solid white;
+            box-shadow: 0 3px 8px #00000012;
+            cursor: pointer;
+        }
+
+        .color-tile:disabled {
+            cursor: not-allowed;
+            opacity: 0.75;
+        }
+
+        .pink { background: #f59bc2; }
+        .blue { background: #8ed5f5; }
+        .green { background: #81d9b1; }
+        .purple { background: #b7a0ee; }
+
+        .riddle {
+            background: #fff0f7;
+            padding: 18px;
+            border-radius: 15px;
+            margin-top: 15px;
+        }
+
+        .back {
+            text-align: center;
+            margin: 35px 0 10px;
+        }
+
+        .back a {
+            display: inline-block;
+            background: #45ae8b;
+            color: white;
+            padding: 12px 22px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .back a:hover {
+            background: #2c886b;
+        }
+
+        footer {
+            background: #dff7eb;
+            text-align: center;
+            padding: 25px;
+            color: #55776c;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav a {
+                margin: 0 7px;
+            }
+
+            section {
+                padding: 20px;
+            }
+
+            .hero {
+                padding: 45px 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h2>🐞 Brainy Bugs Math</h2>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#contact">Contact</a>
+    </nav>
+</header>
+
+<div class="hero">
+    <div class="emoji">🧠🌈</div>
+    <h1>Welcome to Brain Games!</h1>
+    <p>
+        Ready to challenge your brain? Explore fun number challenges,
+        test your memory, and solve tricky riddles while learning math!
+    </p>
+    <span class="tag">Think • Play • Grow</span>
+</div>
+
+<main>
+
+    <section>
+        <h2>🌟 Why Play Brain Games?</h2>
+        <p>
+            Brain games give you a fun way to practice logical thinking,
+            memory, concentration, and problem-solving. The more you
+            practice, the more comfortable you can become with challenges.
+        </p>
+    </section>
+
+    <section>
+        <h2>🔢 Game 1: Number Detective</h2>
+        <p>Find the secret number using the clues!</p>
+
+        <div class="game-area">
+            <h3>Can You Guess the Number?</h3>
+            <p>I'm thinking of a number from 1 to 20.</p>
+            <p>Hint: It is even and greater than 10 but less than 16.</p>
+
+            <input type="number" id="guess" min="1" max="20"
+                placeholder="Enter a number">
+            <br>
+            <button onclick="checkGuess()">Guess! 🔍</button>
+            <button onclick="resetGuess()">Try Again</button>
+            <p id="guess-result" class="feedback" aria-live="polite"></p>
+        </div>
+    </section>
+
+    <section>
+        <h2>🎨 Game 2: Memory Challenge</h2>
+        <p>
+            Watch the color sequence, then repeat it in the same order.
+            Each round adds one more color!
+        </p>
+
+        <div class="game-area">
+            <p id="memory-status" aria-live="polite">
+                Press Start to begin your memory challenge.
+            </p>
+
+            <div class="memory-colors">
+                <button class="color-tile pink" data-color="0"
+                    aria-label="Pink tile" onclick="chooseColor(0)"></button>
+                <button class="color-tile blue" data-color="1"
+                    aria-label="Blue tile" onclick="chooseColor(1)"></button>
+                <button class="color-tile green" data-color="2"
+                    aria-label="Green tile" onclick="chooseColor(2)"></button>
+                <button class="color-tile purple" data-color="3"
+                    aria-label="Purple tile" onclick="chooseColor(3)"></button>
+            </div>
+
+            <button onclick="startMemory()">Start / Restart 🧠</button>
+            <p id="memory-score" class="feedback">Level: 0</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>🧩 Game 3: Complete the Pattern</h2>
+        <p>Find the number that comes next.</p>
+
+        <div class="game-grid">
+            <div class="game-card">
+                <div class="game-icon">🌸</div>
+                <h3>Easy</h3>
+                <p class="big-display">2, 4, 6, 8, ?</p>
+                <button onclick="reveal('pattern1')">Show Answer</button>
+                <p id="pattern1" class="feedback" hidden>
+                    Answer: 10. Add 2 each time!
+                </p>
+            </div>
+
+            <div class="game-card">
+                <div class="game-icon">⭐</div>
+                <h3>Medium</h3>
+                <p class="big-display">5, 10, 20, 40, ?</p>
+                <button onclick="reveal('pattern2')">Show Answer</button>
+                <p id="pattern2" class="feedback" hidden>
+                    Answer: 80. Multiply by 2 each time!
+                </p>
+            </div>
+
+            <div class="game-card">
+                <div class="game-icon">🌈</div>
+                <h3>Challenge</h3>
+                <p class="big-display">30, 25, 20, 15, ?</p>
+                <button onclick="reveal('pattern3')">Show Answer</button>
+                <p id="pattern3" class="feedback" hidden>
+                    Answer: 10. Subtract 5 each time!
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>🤔 Game 4: Brain Teasers</h2>
+
+        <div class="riddle">
+            <h3>Riddle 1 🐥</h3>
+            <p>
+                Three birds sit on a tree. Two more birds join them.
+                How many birds are there now?
+            </p>
+            <button onclick="reveal('riddle1')">Reveal Answer</button>
+            <p id="riddle1" class="feedback" hidden>
+                Answer: 5 birds. 3 + 2 = 5!
+            </p>
+        </div>
+
+        <div class="riddle">
+            <h3>Riddle 2 🍎</h3>
+            <p>
+                You have 6 apples and give 2 to your friend.
+                How many apples do you have left?
+            </p>
+            <button onclick="reveal('riddle2')">Reveal Answer</button>
+            <p id="riddle2" class="feedback" hidden>
+                Answer: 4 apples. 6 − 2 = 4!
+            </p>
+        </div>
+
+        <div class="riddle">
+            <h3>Riddle 3 ✨</h3>
+            <p>
+                I am an odd number. Take away one letter from my name
+                and I become even. What number am I?
+            </p>
+            <button onclick="reveal('riddle3')">Reveal Answer</button>
+            <p id="riddle3" class="feedback" hidden>
+                Answer: Seven. Remove the letter "s" and "even" remains!
+            </p>
+        </div>
+    </section>
+
+    <section>
+        <h2>🏆 Quick Brain Quiz</h2>
+        <p>Answer all three questions and check your score!</p>
+
+        <div class="game-area">
+            <p><strong>1. What is 9 × 3?</strong></p>
+            <label><input type="radio" name="q1" value="24"> 24</label><br>
+            <label><input type="radio" name="q1" value="27"> 27</label><br>
+            <label><input type="radio" name="q1" value="30"> 30</label>
+        </div>
+
+        <div class="game-area">
+            <p><strong>2. What comes next: 1, 3, 5, 7, ___?</strong></p>
+            <label><input type="radio" name="q2" value="8"> 8</label><br>
+            <label><input type="radio" name="q2" value="9"> 9</label><br>
+            <label><input type="radio" name="q2" value="10"> 10</label>
+        </div>
+
+        <div class="game-area">
+            <p><strong>3. What is half of 18?</strong></p>
+            <label><input type="radio" name="q3" value="8"> 8</label><br>
+            <label><input type="radio" name="q3" value="9"> 9</label><br>
+            <label><input type="radio" name="q3" value="10"> 10</label>
+        </div>
+
+        <br>
+        <button onclick="checkQuiz()">Check My Score 🎉</button>
+        <p id="quiz-result" class="feedback" aria-live="polite"></p>
+    </section>
+
+    <section>
+        <h2>💚 Tips for a Stronger Brain</h2>
+        <ul style="padding-left: 22px;">
+            <li>Practice a little every day.</li>
+            <li>Try solving a puzzle before looking at its answer.</li>
+            <li>Look carefully for number patterns.</li>
+            <li>Take breaks when you feel tired.</li>
+            <li>Celebrate your progress, even when a question is difficult!</li>
+        </ul>
+    </section>
+
+    <div class="back">
+        <a href="index.html">← Back to Home</a>
+    </div>
+
+</main>
+
+<footer>
+    <p>🐞 Brainy Bugs Math | Smart Minds, Happy Learning! 💚</p>
+</footer>
+
+<script>
+    function reveal(id) {
+        const item = document.getElementById(id);
+        item.hidden = !item.hidden;
+    }
+
+    function checkGuess() {
+        const input = document.getElementById("guess");
+        const result = document.getElementById("guess-result");
+
+        if (input.value.trim() === "") {
+            result.textContent = "Enter a number first! 😊";
+            return;
+        }
+
+        const guess = Number(input.value);
+
+        if (!Number.isInteger(guess) || guess < 1 || guess > 20) {
+            result.textContent = "Choose a whole number from 1 to 20.";
+        } else if (guess === 12) {
+            result.textContent = "Correct! 🎉 The secret number is 12!";
+        } else if (guess < 12) {
+            result.textContent = "Try a higher number! ⬆️";
+        } else {
+            result.textContent = "Try a lower number! ⬇️";
+        }
+    }
+
+    function resetGuess() {
+        document.getElementById("guess").value = "";
+        document.getElementById("guess-result").textContent = "";
+    }
+
+    let sequence = [];
+    let playerSequence = [];
+    let acceptingInput = false;
+    let memoryLevel = 0;
+    let roundToken = 0;
+
+    const memoryNames = ["Pink", "Blue", "Green", "Purple"];
+
+    function wait(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    async function flashTile(index, token) {
+        if (token !== roundToken) return;
+
+        const tiles = document.querySelectorAll(".color-tile");
+        tiles[index].style.filter = "brightness(1.45)";
+        await wait(350);
+
+        if (token !== roundToken) return;
+        tiles[index].style.filter = "";
+        await wait(180);
+    }
+
+    async function showSequence(token) {
+        acceptingInput = false;
+        document.getElementById("memory-status").textContent =
+            "Watch carefully! 👀";
+
+        await wait(500);
+
+        for (const color of sequence) {
+            if (token !== roundToken) return;
+            await flashTile(color, token);
+        }
+
+        if (token !== roundToken) return;
+
+        playerSequence = [];
+        acceptingInput = true;
+        document.getElementById("memory-status").textContent =
+            "Your turn! Repeat the colors in order.";
+    }
+
+    function startMemory() {
+        roundToken++;
+        sequence = [];
+        playerSequence = [];
+        memoryLevel = 0;
+        acceptingInput = false;
+
+        document.getElementById("memory-score").textContent = "Level: 0";
+        sequence.push(Math.floor(Math.random() * 4));
+        memoryLevel = 1;
+
+        document.getElementById("memory-score").textContent = "Level: 1";
+        showSequence(roundToken);
+    }
+
+    async function chooseColor(color) {
+        if (!acceptingInput) return;
+
+        const token = roundToken;
+        await flashTile(color, token);
+
+        if (token !== roundToken || !acceptingInput) return;
+
+        playerSequence.push(color);
+        const position = playerSequence.length - 1;
+
+        if (playerSequence[position] !== sequence[position]) {
+            acceptingInput = false;
+            document.getElementById("memory-status").textContent =
+                "Game over! You reached level " + memoryLevel +
+                ". Press Start to try again.";
+            return;
+        }
+
+        if (playerSequence.length === sequence.length) {
+            acceptingInput = false;
+            memoryLevel++;
+            document.getElementById("memory-score").textContent =
+                "Level: " + memoryLevel;
+
+            document.getElementById("memory-status").textContent =
+                "Great memory! Get ready for the next round. 🌟";
+
+            await wait(700);
+            if (token !== roundToken) return;
+
+            sequence.push(Math.floor(Math.random() * 4));
+            showSequence(token);
+        }
+    }
+
+    function checkQuiz() {
+        const answers = {
+            q1: "27",
+            q2: "9",
+            q3: "9"
+        };
+
+        let score = 0;
+        let complete = true;
+
+        for (const question in answers) {
+            const selected = document.querySelector(
+                'input[name="' + question + '"]:checked'
+            );
+
+            if (!selected) {
+                complete = false;
+            } else if (selected.value === answers[question]) {
+                score++;
+            }
+        }
+
+        const result = document.getElementById("quiz-result");
+
+        if (!complete) {
+            result.textContent = "Please answer every question first. 😊";
+        } else {
+            result.textContent = "Your score: " + score + "/3. " +
+                (score === 3
+                    ? "Fantastic! You're a brain-game champion! 🏆"
+                    : "Good try! Review the questions and try again. 💚");
+        }
+    }
+</script>
+
+</body>
+</html>

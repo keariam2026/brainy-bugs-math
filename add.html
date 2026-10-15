@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Addition & Subtraction | Brainy Bugs Math</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Trebuchet MS", Arial, sans-serif;
+            background: linear-gradient(135deg, #fff1f5, #eaf7ff, #fff5e9);
+            color: #51435f;
+            line-height: 1.7;
+        }
+
+        header {
+            background: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            box-shadow: 0 3px 15px #d9c9e655;
+        }
+
+        header h2 {
+            color: #9b70d4;
+        }
+
+        nav a {
+            color: #65527d;
+            text-decoration: none;
+            font-weight: bold;
+            margin-left: 15px;
+        }
+
+        nav a:hover {
+            color: #e779ad;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .hero .emoji {
+            font-size: 50px;
+        }
+
+        .hero h1 {
+            color: #9b70d4;
+            font-size: clamp(30px, 5vw, 44px);
+            margin: 10px 0;
+        }
+
+        .hero p {
+            max-width: 680px;
+            margin: auto;
+            font-size: 17px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #fbdce9;
+            color: #984d76;
+            border-radius: 25px;
+            padding: 7px 18px;
+            margin-top: 18px;
+            font-weight: bold;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: auto;
+            padding: 0 20px 50px;
+        }
+
+        section {
+            background: #ffffffdf;
+            padding: 28px;
+            margin-bottom: 25px;
+            border-radius: 22px;
+            box-shadow: 0 5px 18px #b9a5d522;
+        }
+
+        h2 {
+            color: #9b70d4;
+            margin-bottom: 12px;
+        }
+
+        h3 {
+            color: #d66d9c;
+            margin-bottom: 8px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+            margin-top: 18px;
+        }
+
+        .card {
+            padding: 22px;
+            border-radius: 18px;
+            background: #f5efff;
+            border: 2px solid #e3d5ff;
+        }
+
+        .card:nth-child(2) {
+            background: #fff0f7;
+            border-color: #ffd5e9;
+        }
+
+        .card:nth-child(3) {
+            background: #eaf7ff;
+            border-color: #cceaff;
+        }
+
+        .big-number {
+            font-size: 30px;
+            font-weight: bold;
+            text-align: center;
+            color: #9b70d4;
+            margin: 12px 0;
+        }
+
+        .example {
+            background: #edf8ff;
+            border-left: 5px solid #8acded;
+            padding: 16px;
+            border-radius: 10px;
+            margin-top: 12px;
+        }
+
+        .pink-box {
+            background: #fff0f7;
+            border-left: 5px solid #f0a4c8;
+            padding: 16px;
+            border-radius: 10px;
+            margin-top: 12px;
+        }
+
+        .steps {
+            padding-left: 23px;
+        }
+
+        .steps li {
+            margin-bottom: 7px;
+        }
+
+        .practice {
+            background: #f5efff;
+            padding: 20px;
+            border-radius: 16px;
+            margin-top: 15px;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            max-width: 280px;
+            padding: 11px;
+            border: 2px solid #e2c9f5;
+            border-radius: 10px;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        button, .back-btn {
+            display: inline-block;
+            background: #9b70d4;
+            color: white;
+            border: none;
+            padding: 11px 20px;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: bold;
+            text-decoration: none;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+
+        button:hover, .back-btn:hover {
+            background: #7850b3;
+            transform: translateY(-2px);
+        }
+
+        .feedback {
+            margin-top: 10px;
+            font-weight: bold;
+            min-height: 25px;
+        }
+
+        .back {
+            text-align: center;
+            margin: 35px 0 10px;
+        }
+
+        footer {
+            background: #e8ddf7;
+            text-align: center;
+            padding: 25px;
+            color: #65527d;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav a {
+                margin: 0 7px;
+            }
+
+            section {
+                padding: 20px;
+            }
+
+            .hero {
+                padding: 45px 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h2>🐞 Brainy Bugs Math</h2>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#contact">Contact</a>
+    </nav>
+</header>
+
+<div class="hero">
+    <div class="emoji">➕➖🌸</div>
+    <h1>Addition & Subtraction</h1>
+    <p>
+        Learn how to add numbers together and subtract one number
+        from another with simple notes, colorful examples, and fun practice!
+    </p>
+    <span class="tag">Learn • Practice • Improve</span>
+</div>
+
+<main>
+
+    <section>
+        <h2>🌟 1. What Is Addition?</h2>
+        <p>
+            <strong>Addition</strong> means putting numbers together
+            to find the total. The plus sign (+) is used for addition.
+        </p>
+
+        <div class="example">
+            <h3>Example</h3>
+            <p>You have 3 apples and get 2 more apples.</p>
+            <div class="big-number">3 + 2 = 5 🍎</div>
+            <p>There are 5 apples altogether!</p>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <h3>➕ Add Small Numbers</h3>
+                <p>4 + 3 = 7</p>
+                <p>Count 4, then count 3 more.</p>
+            </div>
+
+            <div class="card">
+                <h3>🌷 Add Bigger Numbers</h3>
+                <p>24 + 15 = 39</p>
+                <p>Add the ones, then the tens.</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>🩷 2. Addition With Carrying</h2>
+        <p>
+            When the sum of the ones is 10 or more, we carry the
+            extra ten to the tens column.
+        </p>
+
+        <div class="pink-box">
+            <h3>Example: 27 + 15</h3>
+            <p><strong>Step 1:</strong> Add the ones: 7 + 5 = 12.</p>
+            <p>Write 2 in the ones place and carry 1 ten.</p>
+            <p><strong>Step 2:</strong> Add the tens: 2 + 1 + 1 = 4.</p>
+            <p><strong>Answer: 27 + 15 = 42</strong></p>
+        </div>
+    </section>
+
+    <section>
+        <h2>🌈 3. What Is Subtraction?</h2>
+        <p>
+            <strong>Subtraction</strong> means taking one number away
+            from another to find the difference. The minus sign (−)
+            is used for subtraction.
+        </p>
+
+        <div class="example">
+            <h3>Example</h3>
+            <p>You have 7 balloons and 3 balloons fly away.</p>
+            <div class="big-number">7 − 3 = 4 🎈</div>
+            <p>You have 4 balloons left.</p>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <h3>➖ Subtract Small Numbers</h3>
+                <p>9 − 4 = 5</p>
+                <p>Start at 9 and count backward 4 steps.</p>
+            </div>
+
+            <div class="card">
+                <h3>🩵 Subtract Bigger Numbers</h3>
+                <p>48 − 23 = 25</p>
+                <p>Subtract the ones, then the tens.</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>💜 4. Subtraction With Borrowing</h2>
+        <p>
+            If the top digit in the ones column is smaller than
+            the bottom digit, we can regroup one ten as 10 ones.
+        </p>
+
+        <div class="pink-box">
+            <h3>Example: 42 − 17</h3>
+            <p><strong>Step 1:</strong> We cannot subtract 7 from 2 using whole positive digits.</p>
+            <p>Regroup 1 ten from 4 tens. Now there are 3 tens and 12 ones.</p>
+            <p><strong>Step 2:</strong> Subtract the ones: 12 − 7 = 5.</p>
+            <p><strong>Step 3:</strong> Subtract the tens: 3 − 1 = 2.</p>
+            <p><strong>Answer: 42 − 17 = 25</strong></p>
+        </div>
+    </section>
+
+    <section>
+        <h2>📚 5. Important Math Words</h2>
+
+        <div class="grid">
+            <div class="card">
+                <h3>Sum</h3>
+                <p>The answer to an addition problem.</p>
+                <p>Example: 4 + 5 = <strong>9</strong></p>
+            </div>
+
+            <div class="card">
+                <h3>Difference</h3>
+                <p>The answer to a subtraction problem.</p>
+                <p>Example: 9 − 5 = <strong>4</strong></p>
+            </div>
+
+            <div class="card">
+                <h3>Regrouping</h3>
+                <p>Exchanging place value units, such as 1 ten for 10 ones.</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>🎯 6. Interactive Practice</h2>
+        <p>Type your answer and press the check button.</p>
+
+        <div class="practice">
+            <h3>Question 1: Addition</h3>
+            <p>26 + 17 = ?</p>
+            <input type="number" id="answer1" placeholder="Your answer">
+            <br>
+            <button onclick="checkAnswer('answer1', 43, 'result1')">
+                Check Answer
+            </button>
+            <p id="result1" class="feedback" aria-live="polite"></p>
+        </div>
+
+        <div class="practice">
+            <h3>Question 2: Subtraction</h3>
+            <p>65 − 28 = ?</p>
+            <input type="number" id="answer2" placeholder="Your answer">
+            <br>
+            <button onclick="checkAnswer('answer2', 37, 'result2')">
+                Check Answer
+            </button>
+            <p id="result2" class="feedback" aria-live="polite"></p>
+        </div>
+
+        <div class="practice">
+            <h3>Question 3: Word Problem 🍓</h3>
+            <p>
+                Sara has 18 strawberries. Her friend gives her 9 more.
+                How many strawberries does Sara have now?
+            </p>
+            <input type="number" id="answer3" placeholder="Your answer">
+            <br>
+            <button onclick="checkAnswer('answer3', 27, 'result3')">
+                Check Answer
+            </button>
+            <p id="result3" class="feedback" aria-live="polite"></p>
+        </div>
+
+        <div class="practice">
+            <h3>Question 4: Challenge ⭐</h3>
+            <p>A library has 50 books. Students borrow 16. How many remain?</p>
+            <input type="number" id="answer4" placeholder="Your answer">
+            <br>
+            <button onclick="checkAnswer('answer4', 34, 'result4')">
+                Check Answer
+            </button>
+            <p id="result4" class="feedback" aria-live="polite"></p>
+        </div>
+    </section>
+
+    <section>
+        <h2>💡 Tips to Remember</h2>
+        <ul class="steps">
+            <li>Addition combines quantities; subtraction takes away or finds the difference.</li>
+            <li>Line up digits according to place value when calculating vertically.</li>
+            <li>Remember to carry or regroup when needed.</li>
+            <li>Check subtraction by adding the difference to the number taken away.</li>
+            <li>Practice a few questions every day!</li>
+        </ul>
+
+        <div class="example">
+            <strong>Remember:</strong> If 15 + 8 = 23, then 23 − 8 = 15.
+            Addition and subtraction are related operations.
+        </div>
+    </section>
+
+    <div class="back">
+        <a href="index.html" class="back-btn">← Back to Home</a>
+    </div>
+
+</main>
+
+<footer>
+    <p>🐞 Brainy Bugs Math | Learn Math the Fun Way! 💗</p>
+</footer>
+
+<script>
+    function checkAnswer(inputId, correctAnswer, resultId) {
+        const input = document.getElementById(inputId);
+        const result = document.getElementById(resultId);
+
+        if (input.value.trim() === "") {
+            result.textContent = "Please enter your answer first. 😊";
+            result.style.color = "#8c61c9";
+            return;
+        }
+
+        if (Number(input.value) === correctAnswer) {
+            result.textContent = "Correct! Amazing work! 🎉";
+            result.style.color = "green";
+        } else {
+            result.textContent = "Not quite! Try again. You can do it! 🌸";
+            result.style.color = "#bd4779";
+        }
+    }
+</script>
+
+</body>
+</html>

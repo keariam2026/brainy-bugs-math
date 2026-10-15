@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Puzzles | Brainy Bugs Math</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Trebuchet MS", Arial, sans-serif;
+            background: linear-gradient(135deg, #fff0f7, #eaf7ff, #f3edff);
+            color: #40365b;
+            line-height: 1.7;
+        }
+
+        header {
+            background: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            box-shadow: 0 3px 15px #d8c9e855;
+        }
+
+        header h2 {
+            color: #8c61c9;
+        }
+
+        nav a {
+            color: #65527d;
+            text-decoration: none;
+            font-weight: bold;
+            margin-left: 15px;
+        }
+
+        nav a:hover {
+            color: #e779b2;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 65px 20px;
+        }
+
+        .hero .emoji {
+            font-size: 48px;
+        }
+
+        .hero h1 {
+            color: #8c61c9;
+            font-size: clamp(30px, 5vw, 44px);
+            margin: 10px 0;
+        }
+
+        .hero p {
+            max-width: 650px;
+            margin: auto;
+            font-size: 17px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #fbd9eb;
+            color: #8b4773;
+            border-radius: 25px;
+            padding: 7px 18px;
+            margin-top: 18px;
+            font-weight: bold;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: auto;
+            padding: 0 20px 50px;
+        }
+
+        section {
+            background: #ffffffd9;
+            padding: 28px;
+            margin-bottom: 25px;
+            border-radius: 22px;
+            box-shadow: 0 5px 18px #b9a5d522;
+        }
+
+        h2 {
+            color: #8c61c9;
+            margin-bottom: 12px;
+        }
+
+        h3 {
+            color: #bd6298;
+            margin-bottom: 8px;
+        }
+
+        .puzzle-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+            margin-top: 18px;
+        }
+
+        .puzzle-card {
+            background: #f5efff;
+            border: 2px solid #e3d5ff;
+            border-radius: 18px;
+            padding: 20px;
+        }
+
+        .puzzle-card:nth-child(2) {
+            background: #fff0f7;
+            border-color: #ffd5e9;
+        }
+
+        .puzzle-card:nth-child(3) {
+            background: #eaf7ff;
+            border-color: #cceaff;
+        }
+
+        .big-number {
+            font-size: 27px;
+            font-weight: bold;
+            color: #8c61c9;
+            text-align: center;
+            margin: 12px 0;
+        }
+
+        .example {
+            background: #f0f8ff;
+            border-left: 5px solid #85c9ee;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 12px;
+        }
+
+        .steps li {
+            margin-left: 22px;
+            margin-bottom: 5px;
+        }
+
+        .challenge {
+            background: #fff0f7;
+            padding: 18px;
+            border-radius: 15px;
+            margin-top: 15px;
+        }
+
+        .challenge input {
+            width: 100%;
+            max-width: 300px;
+            padding: 11px;
+            border: 2px solid #e2c9f5;
+            border-radius: 10px;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        button, .back-btn {
+            display: inline-block;
+            background: #9b70d4;
+            color: white;
+            border: none;
+            padding: 11px 20px;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: bold;
+            text-decoration: none;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+
+        button:hover, .back-btn:hover {
+            background: #7850b3;
+            transform: translateY(-2px);
+        }
+
+        .answer {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .quiz-question {
+            background: #f5efff;
+            border-radius: 14px;
+            padding: 17px;
+            margin: 15px 0;
+        }
+
+        .quiz-question label {
+            display: block;
+            margin: 7px 0;
+            cursor: pointer;
+        }
+
+        .quiz-question input {
+            margin-right: 8px;
+        }
+
+        #quiz-result {
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        footer {
+            background: #e8ddf7;
+            text-align: center;
+            padding: 25px;
+            color: #65527d;
+        }
+
+        .back {
+            text-align: center;
+            margin: 35px 0 10px;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav a {
+                margin: 0 7px;
+            }
+
+            section {
+                padding: 20px;
+            }
+
+            .hero {
+                padding: 45px 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h2>🐞 Brainy Bugs Math</h2>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#contact">Contact</a>
+    </nav>
+</header>
+
+<div class="hero">
+    <div class="emoji">🧩✨</div>
+    <h1>Welcome to Math Puzzles!</h1>
+    <p>
+        Get ready to think, explore, and solve! Math puzzles help you
+        improve your problem-solving skills while making mathematics fun.
+    </p>
+    <span class="tag">Think • Solve • Learn</span>
+</div>
+
+<main>
+
+    <section>
+        <h2>🌟 What Are Math Puzzles?</h2>
+        <p>
+            Math puzzles are fun problems that use numbers, patterns,
+            shapes, and logical thinking. They challenge your brain to
+            discover answers instead of simply memorizing them.
+        </p>
+
+        <div class="example">
+            <strong>Remember:</strong> Read each puzzle carefully,
+            look for clues, try different ideas, and check your answer.
+            Mistakes are part of learning!
+        </div>
+    </section>
+
+    <section>
+        <h2>🔢 Puzzle 1: Find the Missing Number</h2>
+        <p>Look at the number pattern and discover the missing number.</p>
+
+        <div class="puzzle-grid">
+            <div class="puzzle-card">
+                <h3>Easy Puzzle</h3>
+                <div class="big-number">2, 4, 6, ?, 10</div>
+                <p><strong>Hint:</strong> Count by 2 each time.</p>
+                <button onclick="showAnswer('answer1')">Show Answer</button>
+                <p id="answer1" class="answer" hidden>
+                    Answer: 8. Each number increases by 2.
+                </p>
+            </div>
+
+            <div class="puzzle-card">
+                <h3>Number Challenge</h3>
+                <div class="big-number">5, 10, 15, ?, 25</div>
+                <p><strong>Hint:</strong> Count by 5 each time.</p>
+                <button onclick="showAnswer('answer2')">Show Answer</button>
+                <p id="answer2" class="answer" hidden>
+                    Answer: 20. Each number increases by 5.
+                </p>
+            </div>
+
+            <div class="puzzle-card">
+                <h3>Brain Teaser</h3>
+                <div class="big-number">1, 2, 4, 8, ?</div>
+                <p><strong>Hint:</strong> Double the previous number.</p>
+                <button onclick="showAnswer('answer3')">Show Answer</button>
+                <p id="answer3" class="answer" hidden>
+                    Answer: 16. Each number is multiplied by 2.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>🧠 Puzzle 2: Use Logical Thinking</h2>
+
+        <div class="puzzle-card">
+            <h3>The Animal Puzzle 🐰</h3>
+            <p>
+                There are 3 rabbits. Each rabbit has 2 ears.
+                How many rabbit ears are there altogether?
+            </p>
+
+            <div class="example">
+                <strong>Step 1:</strong> Number of rabbits = 3<br>
+                <strong>Step 2:</strong> Each rabbit has 2 ears<br>
+                <strong>Step 3:</strong> Multiply 3 × 2 = 6
+            </div>
+
+            <button onclick="showAnswer('answer4')">Check the Answer</button>
+            <p id="answer4" class="answer" hidden>
+                🐰 Correct answer: 6 ears!
+            </p>
+        </div>
+
+        <div class="puzzle-card" style="margin-top: 18px;">
+            <h3>The Magic Number ✨</h3>
+            <p>
+                I am thinking of a number. If you add 4 to me,
+                the answer is 11. What number am I?
+            </p>
+
+            <button onclick="showAnswer('answer5')">Reveal the Number</button>
+            <p id="answer5" class="answer" hidden>
+                Answer: 7, because 7 + 4 = 11.
+            </p>
+        </div>
+    </section>
+
+    <section>
+        <h2>🎯 Puzzle 3: Try It Yourself!</h2>
+        <p>Solve these puzzles before revealing the answers.</p>
+
+        <div class="challenge">
+            <h3>Challenge A</h3>
+            <p>What is 12 + 8 − 5?</p>
+            <input type="number" id="challengeA" placeholder="Enter your answer">
+            <br>
+            <button onclick="checkChallenge('challengeA', 15, 'resultA')">
+                Check Answer
+            </button>
+            <p id="resultA" class="answer"></p>
+        </div>
+
+        <div class="challenge">
+            <h3>Challenge B</h3>
+            <p>Complete the pattern: 3, 6, 9, 12, ___</p>
+            <input type="number" id="challengeB" placeholder="Enter your answer">
+            <br>
+            <button onclick="checkChallenge('challengeB', 15, 'resultB')">
+                Check Answer
+            </button>
+            <p id="resultB" class="answer"></p>
+        </div>
+
+        <div class="challenge">
+            <h3>Challenge C</h3>
+            <p>A box contains 4 red balls and 3 blue balls. How many balls are there altogether?</p>
+            <input type="number" id="challengeC" placeholder="Enter your answer">
+            <br>
+            <button onclick="checkChallenge('challengeC', 7, 'resultC')">
+                Check Answer
+            </button>
+            <p id="resultC" class="answer"></p>
+        </div>
+    </section>
+
+    <section>
+        <h2>📝 Quick Math Quiz</h2>
+        <p>Choose the correct answer for each question.</p>
+
+        <div class="quiz-question">
+            <p><strong>1. What comes next: 10, 20, 30, ___?</strong></p>
+            <label><input type="radio" name="q1" value="a"> 35</label>
+            <label><input type="radio" name="q1" value="b"> 40</label>
+            <label><input type="radio" name="q1" value="c"> 50</label>
+        </div>
+
+        <div class="quiz-question">
+            <p><strong>2. What is 6 × 3?</strong></p>
+            <label><input type="radio" name="q2" value="a"> 18</label>
+            <label><input type="radio" name="q2" value="b"> 15</label>
+            <label><input type="radio" name="q2" value="c"> 21</label>
+        </div>
+
+        <div class="quiz-question">
+            <p><strong>3. I am an even number between 7 and 11. What am I?</strong></p>
+            <label><input type="radio" name="q3" value="a"> 9</label>
+            <label><input type="radio" name="q3" value="b"> 8</label>
+            <label><input type="radio" name="q3" value="c"> 11</label>
+        </div>
+
+        <button onclick="checkQuiz()">Submit Quiz 🌸</button>
+        <p id="quiz-result"></p>
+    </section>
+
+    <section>
+        <h2>💡 Tips for Solving Math Puzzles</h2>
+        <ul class="steps">
+            <li>Read the question slowly and carefully.</li>
+            <li>Look for patterns and important clues.</li>
+            <li>Break a difficult problem into smaller steps.</li>
+            <li>Use drawings or objects to help you understand.</li>
+            <li>Check your answer and try again if needed.</li>
+            <li>Practice regularly to improve your skills!</li>
+        </ul>
+    </section>
+
+    <div class="back">
+        <a href="index.html" class="back-btn">← Back to Home</a>
+    </div>
+
+</main>
+
+<footer>
+    <p>🐞 Brainy Bugs Math | Learn Math the Fun Way! 💜</p>
+</footer>
+
+<script>
+    function showAnswer(id) {
+        const answer = document.getElementById(id);
+        answer.hidden = !answer.hidden;
+    }
+
+    function checkChallenge(inputId, correctAnswer, resultId) {
+        const input = document.getElementById(inputId);
+        const result = document.getElementById(resultId);
+
+        if (input.value.trim() === "") {
+            result.textContent = "Please enter an answer first. 😊";
+            result.style.color = "#8c61c9";
+            return;
+        }
+
+        if (Number(input.value) === correctAnswer) {
+            result.textContent = "Correct! Great job! 🎉";
+            result.style.color = "green";
+        } else {
+            result.textContent = "Not quite! Try again. 💗";
+            result.style.color = "#bd4779";
+        }
+    }
+
+    function checkQuiz() {
+        const answers = {
+            q1: "b",
+            q2: "a",
+            q3: "b"
+        };
+
+        let score = 0;
+        let unanswered = false;
+
+        for (const question in answers) {
+            const selected = document.querySelector(
+                'input[name="' + question + '"]:checked'
+            );
+
+            if (!selected) {
+                unanswered = true;
+            } else if (selected.value === answers[question]) {
+                score++;
+            }
+        }
+
+        const result = document.getElementById("quiz-result");
+
+        if (unanswered) {
+            result.textContent = "Please answer all 3 questions first. 😊";
+            result.style.color = "#8c61c9";
+        } else {
+            result.textContent =
+                "You scored " + score + " out of 3! " +
+                (score === 3
+                    ? "Amazing work! 🏆"
+                    : "Keep practicing. You can do it! 🌸");
+            result.style.color = "#8c61c9";
+        }
+    }
+</script>
+
+</body>
+</html>

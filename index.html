@@ -7,32 +7,19 @@
 <title>Brainy Bugs Math</title>
 
 <style>
-
-/* =========================
-   GENERAL
-========================= */
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: Arial, sans-serif;
 }
-
 html {
     scroll-behavior: smooth;
 }
-
 body {
     background: #f4f8ff;
     color: #263238;
 }
-
-
-/* =========================
-   HEADER
-========================= */
-
 header {
     display: flex;
     justify-content: space-between;
@@ -45,45 +32,51 @@ header {
     top: 0;
     z-index: 1000;
 }
-
 .logo {
     font-size: 26px;
     font-weight: bold;
-    color: #5b5be7;
+    color: #464688;
 }
-
 nav {
     display: flex;
     gap: 30px;
 }
-
 nav a {
     text-decoration: none;
     color: #333;
     font-weight: 600;
     transition: 0.3s;
 }
-
 nav a:hover {
     color: #5b5be7;
 }
-
-
-/* =========================
-   HOME / HERO
-========================= */
 
 .hero {
     min-height: 80vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 70px;
-    padding: 70px 80px;
+    gap: 55px;
+    padding: 60px 80px;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
+.hero-logo {
+    width: 43%;
+    max-width: 480px;
+    flex-shrink: 0;
+}
+
+.hero-logo img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 28px;
+}
 .text {
-    width: 45%;
+    flex: 1;
+    min-width: 0;
 }
 
 .text h1 {
@@ -97,41 +90,43 @@ nav a:hover {
     line-height: 1.7;
     color: #555;
 }
+@media (max-width: 900px) {
+    .hero {
+        flex-direction: column;
+        gap: 25px;
+        padding: 45px 30px;
+        text-align: center;
+    }
 
-.image {
-    width: 45%;
+    .hero-logo,
+    .text {
+        width: 100%;
+        max-width: 520px;
+    }
+
+    .text h1 {
+        font-size: 40px;
+    }
+
+    .text p {
+        font-size: 18px;
+    }
 }
-
-.image img {
-    width: 100%;
-    max-width: 500px;
-    border-radius: 25px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-}
-
-
-/* =========================
-   MATH CARDS
-========================= */
-
 .cards-section {
     padding: 70px 80px 100px;
     text-align: center;
     background: white;
 }
-
 .cards-section h2 {
     font-size: 38px;
     color: #3434a5;
     margin-bottom: 12px;
 }
-
 .cards-section > p {
     color: #666;
     font-size: 18px;
     margin-bottom: 45px;
 }
-
 .cards-container {
     max-width: 1200px;
     margin: auto;
@@ -139,7 +134,6 @@ nav a:hover {
     grid-template-columns: repeat(3, 1fr);
     gap: 25px;
 }
-
 .card {
     background: #f8f9ff;
     padding: 35px 25px;
@@ -148,12 +142,10 @@ nav a:hover {
     box-shadow: 0 8px 25px rgba(70,70,150,0.08);
     transition: 0.3s ease;
 }
-
 .card:hover {
     transform: translateY(-10px);
     box-shadow: 0 15px 35px rgba(70,70,150,0.15);
 }
-
 .card-icon {
     width: 70px;
     height: 70px;
@@ -165,49 +157,35 @@ nav a:hover {
     border-radius: 50%;
     font-size: 34px;
 }
-
 .card h3 {
     font-size: 23px;
     color: #3434a5;
     margin-bottom: 12px;
 }
-
 .card p {
     color: #666;
     line-height: 1.6;
     font-size: 16px;
 }
-
 .card:nth-child(2) .card-icon {
     background: #fff0d9;
 }
-
 .card:nth-child(3) .card-icon {
     background: #dff8ec;
 }
-
 .card:nth-child(4) .card-icon {
     background: #ffe4ec;
 }
-
 .card:nth-child(5) .card-icon {
     background: #e3f2ff;
 }
-
 .card:nth-child(6) .card-icon {
     background: #f2e5ff;
 }
-
-
-/* =========================
-   CHALLENGE
-========================= */
-
 .challenge-section {
     padding: 90px 80px;
     background: linear-gradient(135deg, #eeeeff, #f9f7ff);
 }
-
 .challenge-content {
     max-width: 1150px;
     margin: auto;
@@ -220,31 +198,26 @@ nav a:hover {
     border-radius: 30px;
     box-shadow: 0 12px 35px rgba(70,70,150,0.1);
 }
-
 .challenge-text {
     width: 60%;
 }
-
 .small-title {
     color: #5b5be7;
     font-size: 14px;
     font-weight: bold;
     letter-spacing: 2px;
 }
-
 .challenge-text h2 {
     font-size: 40px;
     color: #3434a5;
     margin: 15px 0;
 }
-
 .challenge-text p {
     color: #666;
     font-size: 18px;
     line-height: 1.7;
     margin-bottom: 25px;
 }
-
 .challenge-btn {
     border: none;
     padding: 14px 28px;
@@ -256,12 +229,10 @@ nav a:hover {
     cursor: pointer;
     transition: 0.3s;
 }
-
 .challenge-btn:hover {
     background: #3434a5;
     transform: translateY(-3px);
 }
-
 .challenge-picture {
     width: 300px;
     height: 220px;
@@ -273,24 +244,16 @@ nav a:hover {
     gap: 12px;
     font-size: 45px;
 }
-
 .challenge-picture span {
     font-size: 28px;
     color: #5b5be7;
 }
-
-
-/* =========================
-   QUIZ
-========================= */
-
 .quiz-section {
     display: none;
     padding: 80px 25px;
     background: white;
     text-align: center;
 }
-
 .quiz-box {
     max-width: 650px;
     margin: auto;
@@ -299,25 +262,21 @@ nav a:hover {
     border-radius: 25px;
     box-shadow: 0 10px 30px rgba(70,70,150,0.1);
 }
-
 .quiz-box h2 {
     color: #3434a5;
     font-size: 35px;
     margin-bottom: 25px;
 }
-
 #question {
     font-size: 25px;
     font-weight: bold;
     margin-bottom: 25px;
 }
-
 .answer-buttons {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 15px;
 }
-
 .answer-buttons button {
     padding: 15px;
     border: none;
@@ -328,47 +287,35 @@ nav a:hover {
     font-size: 18px;
     transition: 0.3s;
 }
-
 .answer-buttons button:hover {
     background: #eeeeff;
     transform: translateY(-2px);
 }
-
 #result {
     margin-top: 25px;
     font-size: 20px;
     font-weight: bold;
 }
-
 #score {
     margin-top: 15px;
     color: #5b5be7;
     font-weight: bold;
 }
-
-
-/* =========================
-   NOTES
-========================= */
-
 .notes-section {
     padding: 90px 80px;
     background: #f8f9ff;
     text-align: center;
 }
-
 .notes-section h2 {
     font-size: 38px;
     color: #3434a5;
     margin-bottom: 12px;
 }
-
 .notes-intro {
     color: #666;
     font-size: 18px;
     margin-bottom: 45px;
 }
-
 .notes-container {
     max-width: 1200px;
     margin: auto;
@@ -376,7 +323,6 @@ nav a:hover {
     grid-template-columns: repeat(3, 1fr);
     gap: 25px;
 }
-
 .note-card {
     background: white;
     padding: 30px 25px;
@@ -385,28 +331,23 @@ nav a:hover {
     border: 1px solid #e5e7ff;
     transition: 0.3s;
 }
-
 .note-card:hover {
     transform: translateY(-7px);
 }
-
 .note-icon {
     font-size: 40px;
     margin-bottom: 15px;
 }
-
 .note-card h3 {
     color: #3434a5;
     font-size: 22px;
     margin-bottom: 12px;
 }
-
 .note-card p {
     color: #666;
     line-height: 1.6;
     margin-bottom: 20px;
 }
-
 .note-btn {
     border: none;
     padding: 11px 22px;
@@ -417,12 +358,10 @@ nav a:hover {
     cursor: pointer;
     transition: 0.3s;
 }
-
 .note-btn:hover {
     background: #5b5be7;
     color: white;
 }
-
 .note-content {
     display: none;
     margin-top: 20px;
@@ -433,21 +372,25 @@ nav a:hover {
     line-height: 1.7;
     color: #555;
 }
-
 .note-content strong {
     color: #3434a5;
 }
-
-
-/* =========================
-   ABOUT US
-========================= */
-
+.read-notes {
+    display: inline-block;
+    background: lightslategray;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 10px;
+    font-weight: bold;
+    margin-top: 20px;
+    transition: 0.3s;
+}
 .about-section {
     padding: 100px 80px;
     background: white;
 }
-
 .about-container {
     max-width: 1100px;
     margin: auto;
@@ -455,62 +398,47 @@ nav a:hover {
     align-items: center;
     gap: 70px;
 }
-
 .about-text {
     flex: 1;
 }
-
 .about-text .small-title {
     display: block;
     margin-bottom: 10px;
 }
-
 .about-text h2 {
     font-size: 42px;
     color: #3434a5;
     margin-bottom: 20px;
 }
-
 .about-text p {
     color: #666;
     font-size: 18px;
     line-height: 1.8;
     margin-bottom: 15px;
 }
-
 .about-box {
     flex: 1;
     background: #f0f0ff;
     padding: 40px;
     border-radius: 25px;
 }
-
 .about-box h3 {
     color: #3434a5;
     font-size: 25px;
     margin-bottom: 20px;
 }
-
 .about-box ul {
     list-style: none;
 }
-
 .about-box li {
     margin-bottom: 15px;
     color: #555;
     font-size: 17px;
 }
-
-
-/* =========================
-   CONTACT
-========================= */
-
 .contact-section {
     padding: 100px 80px;
     background: linear-gradient(135deg, #eeeeff, #f9f7ff);
 }
-
 .contact-container {
     max-width: 1100px;
     margin: auto;
@@ -518,23 +446,19 @@ nav a:hover {
     gap: 60px;
     align-items: center;
 }
-
 .contact-info {
     flex: 1;
 }
-
 .contact-info h2 {
     color: #3434a5;
     font-size: 42px;
     margin-bottom: 20px;
 }
-
 .contact-info p {
     color: #666;
     font-size: 18px;
     line-height: 1.7;
 }
-
 .contact-form {
     flex: 1;
     background: white;
@@ -542,7 +466,6 @@ nav a:hover {
     border-radius: 25px;
     box-shadow: 0 10px 30px rgba(70,70,150,0.1);
 }
-
 .contact-form input,
 .contact-form textarea {
     width: 100%;
@@ -553,17 +476,14 @@ nav a:hover {
     outline: none;
     font-size: 16px;
 }
-
 .contact-form input:focus,
 .contact-form textarea:focus {
     border-color: #5b5be7;
 }
-
 .contact-form textarea {
     height: 140px;
     resize: vertical;
 }
-
 .contact-form button {
     width: 100%;
     padding: 15px;
@@ -576,40 +496,25 @@ nav a:hover {
     cursor: pointer;
     transition: 0.3s;
 }
-
 .contact-form button:hover {
     background: #3434a5;
     transform: translateY(-2px);
 }
-
 #contact-message {
     text-align: center;
     margin-top: 15px;
     color: #3434a5;
     font-weight: bold;
 }
-
-
-/* =========================
-   FOOTER
-========================= */
-
 footer {
     background: #3434a5;
     color: white;
     text-align: center;
     padding: 30px;
 }
-
 footer p {
     font-size: 15px;
 }
-
-
-/* =========================
-   RESPONSIVE
-========================= */
-
 @media (max-width: 900px) {
 
     .hero {
@@ -649,9 +554,6 @@ footer p {
         width: 100%;
     }
 }
-
-
-/* Added mobile touch/input support */
 button, input, textarea { min-height: 44px; }
 
 @media (max-width: 600px) {
@@ -724,18 +626,9 @@ button, input, textarea { min-height: 44px; }
         padding: 25px;
     }
 }
-
 </style>
 </head>
-
-
 <body>
-
-
-<!-- =========================
-     HEADER
-========================= -->
-
 <header>
 
     <div class="logo">
@@ -759,22 +652,21 @@ button, input, textarea { min-height: 44px; }
         <a href="#about">
             ABOUT US
         </a>
-
     </nav>
 
 </header>
-
-
-<!-- =========================
-     HOME
-========================= -->
-
 <main id="home" class="hero">
+     <div class="hero-logo">
+        <img
+            src="Brainy Bugs Maths Mascot Logo.png"
+            alt="Brainy Bugs Maths logo"
+        >
+    </div>
 
     <div class="text">
 
         <h1>
-            Math Can Be Fun!
+            Maths Can Be Fun!
         </h1>
 
         <p>
@@ -787,22 +679,7 @@ button, input, textarea { min-height: 44px; }
         </p>
 
     </div>
-
-
-    <div class="image">
-
-        <img src="c:\Users\Admin\Desktop\CS PROJECT oww\Expert Maths Tuition in Singapore at Miracle Learning Centre.jpg"
-             alt="Kids learning mathematics">
-
-    </div>
-
 </main>
-
-
-<!-- =========================
-     MATH CARDS
-========================= -->
-
 <section class="cards-section">
 
     <h2>
@@ -812,17 +689,13 @@ button, input, textarea { min-height: 44px; }
     <p>
         Learn math through fun, simple, and exciting ideas!
     </p>
-
-
     <div class="cards-container">
-
-
         <div class="card">
 
             <div class="card-icon">
                 🔢
             </div>
-
+<a href="numbers.html" class="read-notes">Read Notes 📖</a>
             <h3>
                 Numbers
             </h3>
@@ -832,16 +705,12 @@ button, input, textarea { min-height: 44px; }
                 subtract numbers while having fun with
                 exciting challenges.
             </p>
-
         </div>
-
-
         <div class="card">
-
             <div class="card-icon">
                 📐
             </div>
-
+<a href="shapes.html" class="read-notes">Read Notes 📖</a>
             <h3>
                 Shapes
             </h3>
@@ -851,16 +720,12 @@ button, input, textarea { min-height: 44px; }
                 and other amazing shapes found in the
                 world around us.
             </p>
-
         </div>
-
-
         <div class="card">
-
             <div class="card-icon">
                 🧩
             </div>
-
+<a href="mathspuzzles.html" class="read-notes">Read Notes 📖</a>
             <h3>
                 Math Puzzles
             </h3>
@@ -872,14 +737,11 @@ button, input, textarea { min-height: 44px; }
             </p>
 
         </div>
-
-
         <div class="card">
-
             <div class="card-icon">
                 ➕
             </div>
-
+<a href="add.html" class="read-notes">Read Notes 📖</a>
             <h3>
                 Add & Subtract
             </h3>
@@ -891,14 +753,11 @@ button, input, textarea { min-height: 44px; }
             </p>
 
         </div>
-
-
         <div class="card">
-
             <div class="card-icon">
                 📊
             </div>
-
+<a href="patterns.html" class="read-notes">Read Notes 📖</a>
             <h3>
                 Patterns
             </h3>
@@ -910,14 +769,12 @@ button, input, textarea { min-height: 44px; }
             </p>
 
         </div>
-
-
         <div class="card">
 
             <div class="card-icon">
                 🧠
             </div>
-
+<a href="braingames.html" class="read-notes">Read Notes 📖</a>
             <h3>
                 Brain Games
             </h3>
@@ -929,19 +786,9 @@ button, input, textarea { min-height: 44px; }
             </p>
 
         </div>
-
-
     </div>
-
 </section>
-
-
-<!-- =========================
-     CHALLENGE
-========================= -->
-
 <section class="challenge-section">
-
     <div class="challenge-content">
 
         <div class="challenge-text">
@@ -1375,28 +1222,16 @@ button, input, textarea { min-height: 44px; }
 
                 <br>
                 • Mental calculation
-
             </div>
-
         </div>
-
-
     </div>
 
 </section>
-
-
-<!-- =========================
-     ABOUT US
-========================= -->
-
 <section
     class="about-section"
     id="about">
 
     <div class="about-container">
-
-
         <div class="about-text">
 
             <span class="small-title">
@@ -1422,8 +1257,6 @@ button, input, textarea { min-height: 44px; }
             </p>
 
         </div>
-
-
         <div class="about-box">
 
             <h3>
@@ -1459,19 +1292,11 @@ button, input, textarea { min-height: 44px; }
     </div>
 
 </section>
-
-
-<!-- =========================
-     CONTACT
-========================= -->
-
 <section
     class="contact-section"
     id="contact">
 
     <div class="contact-container">
-
-
         <div class="contact-info">
 
             <span class="small-title">
@@ -1533,17 +1358,8 @@ button, input, textarea { min-height: 44px; }
             </div>
 
         </form>
-
-
     </div>
-
 </section>
-
-
-<!-- =========================
-     FOOTER
-========================= -->
-
 <footer>
 
     <p>
@@ -1552,19 +1368,7 @@ button, input, textarea { min-height: 44px; }
     </p>
 
 </footer>
-
-
-<!-- =========================
-     JAVASCRIPT
-========================= -->
-
 <script>
-
-
-/* =========================
-   QUIZ
-========================= */
-
 const questions = [
 
     {
@@ -1725,13 +1529,6 @@ function finishQuiz() {
     saveQuizProgress();
 
 }
-
-
-
-/* =========================
-   SAVED STUDENT PROGRESS
-========================= */
-
 function saveQuizProgress() {
 
     const percentage = Math.round((score / questions.length) * 100);
@@ -1760,11 +1557,6 @@ function updateQuizProgress() {
 
 }
 
-
-/* =========================
-   NOTES
-========================= */
-
 function toggleNote(noteId) {
 
     const note =
@@ -1779,13 +1571,7 @@ function toggleNote(noteId) {
         note.style.display = "block";
 
     }
-
 }
-
-
-/* =========================
-   CONTACT FORM
-========================= */
 
 function sendMessage(event) {
 
@@ -1815,9 +1601,6 @@ function sendMessage(event) {
 }
 
 updateQuizProgress();
-
 </script>
-
-
 </body>
 </html>
